@@ -1,9 +1,9 @@
 import { createClient } from '@supabase/supabase-js';
 
-const url  = (process as any).env?.EXPO_PUBLIC_SUPABASE_URL as string | undefined;
-const anon = (process as any).env?.EXPO_PUBLIC_SUPABASE_ANON_KEY as string | undefined;
+const url  = process.env.EXPO_PUBLIC_SUPABASE_URL;
+const anon = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
-// maradhat a guard:
+// guard maradhat változatlanul
 if (!url || !anon) {
   const msg =
     `Supabase env hiba: URL present=${!!url}, ANON present=${!!anon}. ` +
