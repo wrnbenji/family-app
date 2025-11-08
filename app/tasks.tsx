@@ -1,16 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useAppState } from '../lib/useAppState';
 import { TaskRow, fetchTasks, createTask, setDone, removeTask } from '../lib/tasks';
+import { supabase } from '../lib/supabase';
 
 export default function TasksScreen() {
   const { householdId } = useAppState();
   const [tasks, setTasks] = useState<TaskRow[]>([]);
   const [title, setTitle] = useState('');
-  const [due, setDue] = useState(''); // YYYY-MM-DD
+  const [due, setDue] = useState('');          // YYYY-MM-DD
   const [assignMe, setAssignMe] = useState(false);
 
-  // Nincs kiválasztott háztartás
+  // Ha nincs kiválasztott háztartás, csak infó
   if (!householdId) {
     return (
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
@@ -19,19 +20,20 @@ export default function TasksScreen() {
     );
   }
 
-  async function load() {
-    const list = await fetchTasks(householdId);
+  // --- FONTOS: householdId paraméterként megy a segédfüggvénybe ---
+  async function load(hid: string) {
+    const list = await fetchTasks(hid);
     setTasks(list);
   }
 
   // első betöltés + household váltás
-  useEffect(() => { load(); }, [householdId]);
+  useEffect(() => { load(householdId); }, [householdId]);
 
-  // Realtime: bármely változásra újratölt
+  // Realtime: változáskor újratölt
   useEffect(() => {
     const ch = supabase
-      .channel('tasks-ch')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' }, () => load())
+      .channel(`tasks-${householdId}`)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'tasks' }, () => load(householdId))
       .subscribe();
     return () => { supabase.removeChannel(ch); };
   }, [householdId]);
@@ -39,11 +41,14 @@ export default function TasksScreen() {
   async function onAdd() {
     const trimmed = title.trim();
     if (!trimmed) return;
-    // due -> ISO vagy null
+
     const dueIso = due ? `${due}T00:00:00.000Z` : null;
     await createTask(householdId, trimmed, { due: dueIso, assignToSelf: assignMe });
-    setTitle(''); setDue(''); setAssignMe(false);
-    // load(); // realtime miatt nem muszáj
+
+    setTitle('');
+    setDue('');
+    setAssignMe(false);
+    // realtime miatt nem muszáj load()
   }
 
   return (
@@ -97,6 +102,3 @@ export default function TasksScreen() {
     </ScrollView>
   );
 }
-
-// Fontos: ezt a fájl tetejére tedd be, ha nincs még importálva:
-import { supabase } from '../lib/supabase';
