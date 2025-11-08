@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Familienzentrum"
+  },
+  "nav": {
+    "home": "Start",
+    "tasks": "Aufgaben",
+    "shopping": "Einkaufsliste",
+    "calendar": "Kalender"
+  },
+  "auth": {
+    "email": "E-Mail",
+    "password": "Passwort",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "signOut": "Abmelden"
+  },
+  "shopping": {
+    "addItem": "Artikel hinzufügen",
+    "placeholder": "Was brauchen wir?",
+    "empty": "Liste ist leer"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Családi központ"
+  },
+  "nav": {
+    "home": "Főoldal",
+    "tasks": "Teendők",
+    "shopping": "Bevásárlólista",
+    "calendar": "Naptár"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Jelszó",
+    "signIn": "Belépés",
+    "signUp": "Regisztráció",
+    "signOut": "Kilépés"
+  },
+  "shopping": {
+    "addItem": "Tétel hozzáadása",
+    "placeholder": "Mit vegyünk?",
+    "empty": "Üres lista"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Family Center",
+    "slug": "family-react-starter",
+    "version": "0.1.0",
+    "scheme": "family",
+    "plugins": [
+      "expo-router"
+    ],
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

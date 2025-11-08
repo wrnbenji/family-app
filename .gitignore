@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# expo / metro cache
+.expo/
+.expo-shared/
+dist/
+build/
+
+# env
+.env
+
+# OS / editor
+.DS_Store
+.vscode/

@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "Family Center"
+  },
+  "nav": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "shopping": "Shopping",
+    "calendar": "Calendar"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out"
+  },
+  "shopping": {
+    "addItem": "Add item",
+    "placeholder": "What to buy?",
+    "empty": "Empty list"
+  }
+}
