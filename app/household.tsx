@@ -76,7 +76,8 @@ export default function HouseholdScreen() {
           <Text style={{ fontWeight: '600' }}>{h.name}</Text>
           <View style={{ flexDirection: 'row', gap: 8, marginTop: 8 }}>
             <Button title="Kiválaszt" onPress={() => setHouseholdId(h.id)} />
-            <Button title="Meghívó kód" onPress={() => onInvite(h.id)} />
+            <Button title="Meghívó kód" onPress={() => onInvite(h.id)} disabled={!amAdmin} />
+
           </View>
         </Pressable>
       ))}
