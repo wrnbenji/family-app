@@ -3,6 +3,7 @@ import { View, TextInput, Button, Text, TouchableOpacity, ScrollView } from 'rea
 import { useTranslation } from 'react-i18next';
 import { useShoppingStore, syncWithServer } from '../lib/useShoppingList';
 import { useAppState } from '../lib/useAppState';
+import { upsertShoppingItem, setShoppingDone, removeShoppingItem } from '../lib/shopping';
 
 export default function ShoppingScreen() {
   const { t } = useTranslation();
