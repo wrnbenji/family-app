@@ -8,7 +8,11 @@
       "expo-router"
     ],
     "web": {
-      "bundler": "metro"
+      "bundler": "metro",
+      "favicon": "./assets/icon.png",
+      "name": "Family Center",
+      "shortName": "Family"
+      
     },
     "android": {
       "package": "com.anonymous.familyreactstarter"
